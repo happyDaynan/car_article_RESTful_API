@@ -9,12 +9,12 @@ class articleModels(db.Model):
     todbtime = db.Column(db.DateTime)
     articletype = db.Column(db.Boolean)
 
-    def __init__(self, article_id, country, brand, href, todbtime, articletype):
+    def __init__(self, article_id, country, brand, href, todbtime, articletype= 0):
         self.article_id = article_id
         self.country = country
         self.brand = brand
         self. href = href
-        self.todbtime, =todbtime
+        self.todbtime = todbtime
         self.articletype = articletype
     
     def serizlize(self):
