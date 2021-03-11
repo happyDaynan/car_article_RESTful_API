@@ -13,6 +13,7 @@ class Cars(Resource):
         return jsonify({"data": list(map(lambda car: car.serizlize(), cars))})
 
 class Car_country(Resource):
+    # 依照國家取出data
     def get(self, country):
         car_country = articleModels.query.filter(articleModels.country == country and articleModels.articletype.isnot(True)).all()
 
