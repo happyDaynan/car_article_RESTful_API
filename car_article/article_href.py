@@ -1,3 +1,4 @@
+from re import M
 from flask_restful import Resource, reqparse
 from flask import jsonify, make_response
 from server import db
@@ -41,6 +42,23 @@ class Cars(Resource):
             traceback.print_exc()
             response['msg'] = 'failed'
         return make_response(jsonify(response), status_code)
+    
+    # 刪除文章data
+    def delete(self):
+        arg = parser.parse_args()
+        data = articleModels.query.filter(articleModels.article_id == arg['article_id']).first()
+        
+        response = {}
+        try:
+            db.session.delete(data)
+            db.session.commit()
+            response['msg'] = "delete success"
+        except:
+            response['msg'] = "delete failed"
+        return make_response(jsonify(response))
+
+
+
 
 class Car_country(Resource):
     # 依照國家取出data
